@@ -8,7 +8,7 @@ body, h1, h2, p, ul, li {
 /* Hero Section dengan background foto */
 .hero {
   height: 100vh;
-  background: url("Museum%20Bank%20Indonesia%20Surabaya.jpg") no-repeat center center/cover;
+  background: url("Museum%20Bank%20Indonesia.jpg") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
