@@ -8,7 +8,7 @@ body, h1, h2, p, ul, li {
 /* Hero Section dengan background foto */
 .hero {
   height: 100vh;
-  background: url('Museum%20Bank%20Indonesia%20Surabaya.jpg') no-repeat center center/cover;
+  background: url("images/Museum%20Bank%20Indonesia%20Surabaya.jpg") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,6 +72,27 @@ body, h1, h2, p, ul, li {
 .benefit li {
   margin: 10px 0;
   font-size: 1.1rem;
+}
+
+/* Section Gambar */
+.image-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.image-section img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.image-section .caption {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  font-style: italic;
 }
 
 /* Testimoni */
