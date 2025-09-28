@@ -12,87 +12,85 @@
   <header class="hero">
     <div class="hero-content">
       <h1>Museum Bank Indonesia Surabaya</h1>
-      <p>Menelusuri sejarah perbankan dan ekonomi di Kota Pahlawan</p>
-      <button onclick="document.getElementById('formSection').scrollIntoView({behavior:'smooth'});">
-        Kunjungi Sekarang
-      </button>
+      <p>Jelajahi sejarah perbankan dan arsitektur bersejarah di Kota Pahlawan</p>
+      <a href="#info" class="btn">Kunjungi Sekarang</a>
     </div>
   </header>
 
   <!-- Benefit Section -->
-  <section class="benefit">
-    <h2>Mengapa Harus Berkunjung?</h2>
-    <div class="benefit-list">
-      <div class="card">🏛️ Arsitektur heritage peninggalan Belanda</div>
-      <div class="card">💰 Koleksi uang lama & peralatan perbankan</div>
-      <div class="card">📚 Edukasi sejarah ekonomi Surabaya</div>
-      <div class="card">📸 Spot foto klasik & instagramable</div>
-    </div>
+  <section id="info" class="benefit">
+    <h2>Mengapa Berkunjung?</h2>
+    <ul>
+      <li>Gedung bersejarah dengan arsitektur klasik kolonial</li>
+      <li>Koleksi edukatif tentang perbankan di Indonesia</li>
+      <li>Spot foto menarik di tengah kota Surabaya</li>
+    </ul>
   </section>
 
-  <!-- Detail Section -->
-  <section class="detail">
-    <h2>Tentang Museum BI Surabaya</h2>
-    <p>
-      Museum Bank Indonesia Surabaya, dulunya bernama De Javasche Bank, adalah bangunan bersejarah
-      yang kini difungsikan sebagai museum perbankan. 
-      Museum ini menampilkan perjalanan sistem keuangan Indonesia, koleksi mata uang kuno, hingga
-      peralatan perbankan dari masa ke masa.
-    </p>
-    <img src="Museum Bank Indonesia Surabaya.jpg" alt="Museum BI Surabaya">
+  <!-- Testimoni Section -->
+  <section class="testimoni">
+    <h2>Kata Pengunjung</h2>
+    <blockquote>
+      “Tempat yang sangat informatif dan bangunannya indah sekali!”
+    </blockquote>
+    <blockquote>
+      “Rekomendasi wisata sejarah di Surabaya, cocok untuk keluarga.”
+    </blockquote>
   </section>
 
-  <!-- Form Section -->
-  <section id="formSection" class="form-section">
+  <!-- Form Pengunjung -->
+  <section class="form-section">
     <h2>Form Pengunjung</h2>
-    <form id="formPengunjung" onsubmit="simpanPengunjung(event)">
-      <label>Nama:</label>
-      <input type="text" id="nama" required><br><br>
+    <form id="visitorForm">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required>
 
-      <label>Email:</label>
-      <input type="email" id="email" required><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-      <label>Tanggal Kunjungan:</label>
-      <input type="date" id="tanggal" required><br><br>
+      <label for="pesan">Pesan:</label>
+      <textarea id="pesan" name="pesan"></textarea>
 
-      <button type="submit">Daftar</button>
+      <button type="submit">Kirim</button>
     </form>
-  </section>
 
-  <!-- Table Section -->
-  <section class="tabel-section">
-    <h2>Daftar Pengunjung</h2>
-    <table id="tabelPengunjung">
-      <tr>
-        <th>Nama</th>
-        <th>Email</th>
-        <th>Tanggal</th>
-      </tr>
+    <h3>Daftar Pengunjung</h3>
+    <table id="visitorTable">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Pesan</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
     </table>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Landing Page Museum BI Surabaya | Rafael Mulia Wiratama (5025241196)</p>
+    <p>© 2025 Museum Bank Indonesia Surabaya | Dibuat untuk Tugas PWEB</p>
   </footer>
 
-  <!-- Script -->
   <script>
-    function simpanPengunjung(e) {
+    // Menangani submit form
+    document.getElementById("visitorForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      let nama = document.getElementById("nama").value;
-      let email = document.getElementById("email").value;
-      let tanggal = document.getElementById("tanggal").value;
 
-      let tabel = document.getElementById("tabelPengunjung");
-      let row = tabel.insertRow();
-      row.insertCell(0).innerText = nama;
-      row.insertCell(1).innerText = email;
-      row.insertCell(2).innerText = tanggal;
+      const nama = document.getElementById("nama").value;
+      const email = document.getElementById("email").value;
+      const pesan = document.getElementById("pesan").value;
 
-      document.getElementById("formPengunjung").reset();
-    }
+      const table = document.getElementById("visitorTable").querySelector("tbody");
+      const newRow = table.insertRow();
+
+      newRow.insertCell(0).innerText = nama;
+      newRow.insertCell(1).innerText = email;
+      newRow.insertCell(2).innerText = pesan;
+
+      // Reset form
+      this.reset();
+    });
   </script>
-
 </body>
 </html>
