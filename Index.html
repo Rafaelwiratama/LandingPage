@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museum Bank Indonesia Surabaya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Museum Bank Indonesia Surabaya</h1>
+      <p>Menelusuri sejarah perbankan dan ekonomi di Kota Pahlawan</p>
+      <button onclick="document.getElementById('formSection').scrollIntoView({behavior:'smooth'});">
+        Kunjungi Sekarang
+      </button>
+    </div>
+  </header>
+
+  <!-- Benefit Section -->
+  <section class="benefit">
+    <h2>Mengapa Harus Berkunjung?</h2>
+    <div class="benefit-list">
+      <div class="card">🏛️ Arsitektur heritage peninggalan Belanda</div>
+      <div class="card">💰 Koleksi uang lama & peralatan perbankan</div>
+      <div class="card">📚 Edukasi sejarah ekonomi Surabaya</div>
+      <div class="card">📸 Spot foto klasik & instagramable</div>
+    </div>
+  </section>
+
+  <!-- Detail Section -->
+  <section class="detail">
+    <h2>Tentang Museum BI Surabaya</h2>
+    <p>
+      Museum Bank Indonesia Surabaya, dulunya bernama De Javasche Bank, adalah bangunan bersejarah
+      yang kini difungsikan sebagai museum perbankan. 
+      Museum ini menampilkan perjalanan sistem keuangan Indonesia, koleksi mata uang kuno, hingga
+      peralatan perbankan dari masa ke masa.
+    </p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Javasche_Bank_Surabaya.jpg" alt="Museum BI Surabaya">
+  </section>
+
+  <!-- Form Section -->
+  <section id="formSection" class="form-section">
+    <h2>Form Pengunjung</h2>
+    <form id="formPengunjung" onsubmit="simpanPengunjung(event)">
+      <label>Nama:</label>
+      <input type="text" id="nama" required><br><br>
+
+      <label>Email:</label>
+      <input type="email" id="email" required><br><br>
+
+      <label>Tanggal Kunjungan:</label>
+      <input type="date" id="tanggal" required><br><br>
+
+      <button type="submit">Daftar</button>
+    </form>
+  </section>
+
+  <!-- Table Section -->
+  <section class="tabel-section">
+    <h2>Daftar Pengunjung</h2>
+    <table id="tabelPengunjung">
+      <tr>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Tanggal</th>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Landing Page Museum BI Surabaya | Rafael Mulia Wiratama (5025241196)</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    function simpanPengunjung(e) {
+      e.preventDefault();
+      let nama = document.getElementById("nama").value;
+      let email = document.getElementById("email").value;
+      let tanggal = document.getElementById("tanggal").value;
+
+      let tabel = document.getElementById("tabelPengunjung");
+      let row = tabel.insertRow();
+      row.insertCell(0).innerText = nama;
+      row.insertCell(1).innerText = email;
+      row.insertCell(2).innerText = tanggal;
+
+      document.getElementById("formPengunjung").reset();
+    }
+  </script>
+
+</body>
+</html>
