@@ -1,130 +1,141 @@
-/* General */
-body {
+/* Reset default */
+body, h1, h2, p, ul, li {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background: #f9f9f9;
-  color: #333;
 }
 
-/* Hero Section */
+/* Hero Section dengan background foto */
 .hero {
-  background: url("https://upload.wikimedia.org/wikipedia/commons/3/3b/Javasche_Bank_Surabaya.jpg") no-repeat center center/cover;
-  height: 70vh;
+  height: 100vh;
+  background: url('Museum Bank Indonesia Surabaya.jpg') no-repeat center center/cover;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
+  position: relative;
 }
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); /* overlay biar teks terlihat */
+}
+
 .hero-content {
-  background: rgba(0,0,0,0.6);
-  padding: 20px 30px;
-  border-radius: 10px;
-  color: white;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
 }
-.hero-content h1 {
-  font-size: 2.5rem;
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
 }
-.hero-content button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #ff9800;
-  border: none;
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #ffcc00;
+  color: #000;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: bold;
   border-radius: 5px;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
+  transition: background 0.3s;
 }
-.hero-content button:hover {
-  background: #e68900;
+
+.btn:hover {
+  background: #ffaa00;
 }
 
 /* Benefit Section */
 .benefit {
-  background: #fff;
-  padding: 40px;
+  padding: 50px;
   text-align: center;
-}
-.benefit-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-.card {
-  background: #ff9800;
-  color: white;
-  padding: 15px;
-  border-radius: 8px;
-  flex: 1 1 200px;
-  max-width: 220px;
+  background: #f5f5f5;
 }
 
-/* Detail Section */
-.detail {
-  padding: 40px;
+.benefit h2 {
+  margin-bottom: 20px;
+}
+
+.benefit ul {
+  list-style: none;
+}
+
+.benefit li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* Testimoni */
+.testimoni {
+  padding: 50px;
   text-align: center;
 }
-.detail img {
-  margin-top: 20px;
-  width: 70%;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+
+.testimoni blockquote {
+  margin: 20px auto;
+  font-style: italic;
+  max-width: 600px;
+  border-left: 3px solid #ffcc00;
+  padding-left: 15px;
 }
 
 /* Form Section */
 .form-section {
-  background: #f0f0f0;
-  padding: 40px;
-  text-align: center;
-}
-form {
-  max-width: 400px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-form input, form button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-}
-form button {
-  background: #4CAF50;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-form button:hover {
-  background: #45a049;
+  padding: 50px;
+  background: #f9f9f9;
 }
 
-/* Table Section */
-.tabel-section {
-  padding: 40px;
-  text-align: center;
-}
-table {
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
   margin: auto;
-  border-collapse: collapse;
-  width: 80%;
 }
-th, td {
-  border: 1px solid #ddd;
+
+.form-section input, .form-section textarea, .form-section button {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.form-section button {
+  background: #ffcc00;
+  border: none;
+  cursor: pointer;
+}
+
+.form-section button:hover {
+  background: #ffaa00;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
   padding: 10px;
 }
+
 th {
-  background: #4CAF50;
-  color: white;
+  background: #ffcc00;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 20px;
-  background: #333;
-  color: white;
+  background: #222;
+  color: #fff;
 }
