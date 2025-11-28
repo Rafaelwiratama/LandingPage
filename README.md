@@ -7,17 +7,7 @@ Demo: https://rafaelwiratama.github.io/LandingPage/
 
 ---
 
-## 🎯 Tujuan Proyek
-
-- Menerapkan materi dasar **HTML, CSS, dan JavaScript** dalam satu halaman utuh.
-- Membuat landing page yang **responsive** dan nyaman digunakan di desktop maupun mobile.
-- Menggunakan **Google Maps (embed)** untuk menampilkan lokasi museum.
-- Mengelola data sederhana di sisi client (buku tamu) dengan **DOM manipulation** menggunakan JavaScript.
-- Men-deploy proyek statis menggunakan **GitHub Pages**.
-
----
-
-## 🧩 Fitur Utama
+## Fitur Utama
 
 ### 1. Hero Section
 - Judul besar dan deskripsi singkat museum.
@@ -76,7 +66,7 @@ Demo: https://rafaelwiratama.github.io/LandingPage/
 
 ---
 
-## 🏗️ Struktur Folder
+## Struktur Folder
 
 ```text
 LandingPage/
