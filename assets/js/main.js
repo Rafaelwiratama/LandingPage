@@ -1,115 +1,75 @@
-document.querySelectorAll('a.nav-link[href^="#"], a.btn[href^="#"]').forEach((link) => {
-  link.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
-    if (targetId.startsWith('#')) {
-      e.preventDefault();
-      const target = document.querySelector(targetId);
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 70,
-          behavior: 'smooth',
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId.startsWith("#")) {
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const offset = 70;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
       }
-    }
+    });
   });
-});
 
-$(function () {
-  const $form = $('#visitor-form');
-  const $alert = $('#form-alert');
-  const $tbody = $('#visitor-table-body');
+  const form = document.getElementById("visitor-form");
+  const alertBox = document.getElementById("form-alert");
+  const tbody = document.getElementById("visitor-table-body");
+  const resetBtn = document.getElementById("reset-btn");
 
-  const STORAGE_KEY = 'pengunjung_mbi_surabaya';
-
-  function getLocalData() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    try {
-      return JSON.parse(raw) || [];
-    } catch (e) {
-      return [];
-    }
+  function getRowCount() {
+    return tbody.querySelectorAll("tr").length;
   }
 
-  function setLocalData(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-  function renderTable(initialData, extraData) {
-    const combined = [...initialData, ...extraData];
-    $tbody.empty();
+      const nama = document.getElementById("nama").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const pesan = document.getElementById("pesan").value.trim();
 
-    if (combined.length === 0) {
-      $tbody.append(
-        `<tr><td colspan="4" class="text-center text-muted">Belum ada data pengunjung.</td></tr>`
-      );
-      return;
-    }
+      if (!nama || !email || !pesan) {
+        alertBox.textContent = "Mohon lengkapi semua field.";
+        alertBox.classList.add("error");
+        return;
+      }
 
-    combined.forEach((item, index) => {
-      const row = `
-        <tr>
-          <td>${index + 1}</td>
-          <td>${item.nama}</td>
-          <td>${item.email}</td>
-          <td>${item.pesan}</td>
-        </tr>`;
-      $tbody.append(row);
+      const row = document.createElement("tr");
+      const noCell = document.createElement("td");
+      const namaCell = document.createElement("td");
+      const emailCell = document.createElement("td");
+      const pesanCell = document.createElement("td");
+
+      noCell.textContent = getRowCount() + 1;
+      namaCell.textContent = nama;
+      emailCell.textContent = email;
+      pesanCell.textContent = pesan;
+
+      row.appendChild(noCell);
+      row.appendChild(namaCell);
+      row.appendChild(emailCell);
+      row.appendChild(pesanCell);
+
+      tbody.appendChild(row);
+
+      form.reset();
+      alertBox.textContent = "Terima kasih, data kamu telah ditambahkan ke tabel.";
+      alertBox.classList.remove("error");
     });
   }
 
-  let initialDataCache = [];
-
-  function loadInitialData() {
-    return $.getJSON('assets/data/pengunjung.json')
-      .then(function (data) {
-        if (Array.isArray(data)) {
-          initialDataCache = data;
-        } else {
-          initialDataCache = [];
-        }
-      })
-      .catch(function () {
-        initialDataCache = [];
-      });
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      while (tbody.rows.length > 1) {
+        tbody.deleteRow(1);
+      }
+      if (alertBox) {
+        alertBox.textContent = "";
+        alertBox.classList.remove("error");
+      }
+    });
   }
-
-  function initTable() {
-    const extra = getLocalData();
-    renderTable(initialDataCache, extra);
-  }
-
-  loadInitialData().then(initTable);
-
-  $('#reload-btn').on('click', function () {
-    loadInitialData().then(initTable);
-  });
-
-  $form.on('submit', function (e) {
-    e.preventDefault();
-
-    const nama = $('#nama').val().trim();
-    const email = $('#email').val().trim();
-    const pesan = $('#pesan').val().trim();
-
-    if (!nama || !email || !pesan) {
-      $alert
-        .removeClass()
-        .addClass('alert alert-warning')
-        .text('Mohon lengkapi semua field sebelum mengirim.');
-      return;
-    }
-
-    const extra = getLocalData();
-    extra.push({ nama, email, pesan });
-    setLocalData(extra);
-
-    renderTable(initialDataCache, extra);
-
-    $alert
-      .removeClass()
-      .addClass('alert alert-success')
-      .text('Terima kasih! Data kamu tersimpan di browser ini.');
-    $form[0].reset();
-  });
 });
