@@ -21,8 +21,7 @@
 
 body {
   margin: 0;
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
   background: radial-gradient(circle at top left, #e0edff 0, #f5f7fb 40%, #ffffff 100%);
   line-height: 1.6;
@@ -37,14 +36,10 @@ a {
   color: inherit;
 }
 
-/* Container */
-
 .container {
   width: min(1120px, 100% - 2.5rem);
   margin-inline: auto;
 }
-
-/* Navbar */
 
 .site-header {
   position: sticky;
@@ -118,8 +113,6 @@ a {
   width: 100%;
 }
 
-/* Hero */
-
 .hero {
   padding-block: 3.5rem 3rem;
 }
@@ -173,8 +166,6 @@ a {
   color: var(--text);
 }
 
-/* Hero images */
-
 .hero-image-wrapper {
   position: relative;
   max-width: 430px;
@@ -198,8 +189,6 @@ a {
   border: 4px solid #ffffff;
   transform: rotate(4deg);
 }
-
-/* Sections */
 
 .section {
   padding-block: 3.5rem;
@@ -229,8 +218,6 @@ a {
   max-width: 620px;
   margin-inline: auto;
 }
-
-/* Cards & grids */
 
 .grid-3 {
   display: grid;
@@ -267,8 +254,6 @@ a {
   font-size: 0.9rem;
   color: var(--muted);
 }
-
-/* Detail */
 
 .detail-grid {
   display: grid;
@@ -333,8 +318,6 @@ a {
   margin-top: 0.9rem;
 }
 
-/* Gallery */
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -372,8 +355,6 @@ a {
   opacity: 1;
 }
 
-/* Offer */
-
 .section-offer {
   background: linear-gradient(120deg, #0f172a, #1e293b);
   color: #e5e7eb;
@@ -408,8 +389,6 @@ a {
   font-size: 0.95rem;
 }
 
-/* Testimonials */
-
 .testimonial blockquote {
   margin: 0 0 0.6rem;
   font-size: 0.9rem;
@@ -422,8 +401,6 @@ a {
   font-weight: 600;
   color: #111827;
 }
-
-/* Form & table */
 
 .form-grid {
   display: grid;
@@ -530,8 +507,6 @@ tbody tr:nth-child(odd) {
   color: var(--muted);
 }
 
-/* FAQ */
-
 .faq-list {
   display: grid;
   gap: 1rem;
@@ -555,8 +530,6 @@ tbody tr:nth-child(odd) {
   color: var(--muted);
 }
 
-/* Buttons */
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -571,8 +544,7 @@ tbody tr:nth-child(odd) {
   font-size: 0.9rem;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
-    color 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
 .btn-primary {
@@ -617,8 +589,6 @@ tbody tr:nth-child(odd) {
   padding: 0.45rem 1rem;
   font-size: 0.8rem;
 }
-
-/* Footer */
 
 .site-footer {
   background: var(--bg-dark);
@@ -665,7 +635,25 @@ tbody tr:nth-child(odd) {
   color: #ffffff;
 }
 
-/* Responsive */
+.map-container {
+  width: 100%;
+  min-height: 380px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.18);
+  background: #e5e7eb;
+  position: relative;
+}
+
+.map-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
 
 @media (max-width: 900px) {
   .hero-grid {
@@ -709,12 +697,4 @@ tbody tr:nth-child(odd) {
     flex-direction: column;
     align-items: flex-start;
   }
-}
-
-.map-container {
-  width: 100%;
-  height: 380px;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.18);
 }
