@@ -1,162 +1,31 @@
-/* Reset default */
-body, h1, h2, p, ul, li {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+body {
+  scroll-behavior: smooth;
 }
 
-/* Hero Section dengan background foto */
-.hero {
-  height: 100vh;
-  background: url("Museum%20Bank%20Indonesia.jpg") no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  position: relative;
+.hero-section {
+  margin-top: 4.5rem;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5); /* overlay biar teks terlihat */
+.hero-image {
+  max-height: 380px;
+  object-fit: cover;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
+.bg-primary-soft {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+footer a:hover {
+  color: #ffffff !important;
 }
 
-.hero p {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
+.navbar .nav-link {
+  font-weight: 500;
 }
 
-.btn {
-  background: #ffcc00;
-  color: #000;
-  padding: 12px 24px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.btn:hover {
-  background: #ffaa00;
-}
-
-/* Benefit Section */
-.benefit {
-  padding: 50px;
-  text-align: center;
-  background: #f5f5f5;
-}
-
-.benefit h2 {
-  margin-bottom: 20px;
-}
-
-.benefit ul {
-  list-style: none;
-}
-
-.benefit li {
-  margin: 10px 0;
-  font-size: 1.1rem;
-}
-
-/* Section Gambar */
-.image-section {
-  text-align: center;
-  padding: 40px 20px;
-  background: #fff;
-}
-
-.image-section img {
-  max-width: 90%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.image-section .caption {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #555;
-  font-style: italic;
-}
-
-/* Testimoni */
-.testimoni {
-  padding: 50px;
-  text-align: center;
-}
-
-.testimoni blockquote {
-  margin: 20px auto;
-  font-style: italic;
-  max-width: 600px;
-  border-left: 3px solid #ffcc00;
-  padding-left: 15px;
-}
-
-/* Form Section */
-.form-section {
-  padding: 50px;
-  background: #f9f9f9;
-}
-
-.form-section form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: auto;
-}
-
-.form-section input, .form-section textarea, .form-section button {
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 1rem;
-}
-
-.form-section button {
-  background: #ffcc00;
-  border: none;
-  cursor: pointer;
-}
-
-.form-section button:hover {
-  background: #ffaa00;
-}
-
-table {
-  width: 80%;
-  margin: 20px auto;
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-th {
-  background: #ffcc00;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #222;
-  color: #fff;
+@media (max-width: 576px) {
+  .hero-section {
+    text-align: center;
+  }
 }
