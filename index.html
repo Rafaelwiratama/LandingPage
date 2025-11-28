@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-
   <header class="site-header">
     <div class="container nav-container">
       <div class="logo">
@@ -28,7 +27,6 @@
       </nav>
     </div>
   </header>
-
 
   <section id="hero" class="hero">
     <div class="container hero-grid">
@@ -99,7 +97,6 @@
     </div>
   </section>
 
-
   <section id="detail" class="section section-alt">
     <div class="container detail-grid">
       <div>
@@ -137,7 +134,6 @@
     </div>
   </section>
 
-
   <section id="gallery" class="section">
     <div class="container">
       <div class="section-head center">
@@ -163,7 +159,6 @@
     </div>
   </section>
 
-
   <section id="offer" class="section section-offer">
     <div class="container offer-grid">
       <div>
@@ -183,7 +178,6 @@
       </div>
     </div>
   </section>
-
 
   <section id="testimoni" class="section section-alt">
     <div class="container">
@@ -213,7 +207,6 @@
       </div>
     </div>
   </section>
-
 
   <section id="form" class="section">
     <div class="container">
@@ -328,60 +321,6 @@
     </div>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("visitor-form");
-      const alertBox = document.getElementById("form-alert");
-      const tbody = document.getElementById("visitor-table-body");
-      const resetBtn = document.getElementById("reset-btn");
-
-      function getRowCount() {
-        return tbody.querySelectorAll("tr").length;
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const nama = document.getElementById("nama").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const pesan = document.getElementById("pesan").value.trim();
-
-        if (!nama || !email || !pesan) {
-          alertBox.textContent = "Mohon lengkapi semua field.";
-          alertBox.classList.add("error");
-          return;
-        }
-
-        const row = document.createElement("tr");
-        const noCell = document.createElement("td");
-        const namaCell = document.createElement("td");
-        const emailCell = document.createElement("td");
-        const pesanCell = document.createElement("td");
-
-        noCell.textContent = getRowCount() + 1;
-        namaCell.textContent = nama;
-        emailCell.textContent = email;
-        pesanCell.textContent = pesan;
-
-        row.appendChild(noCell);
-        row.appendChild(namaCell);
-        row.appendChild(emailCell);
-        row.appendChild(pesanCell);
-
-        tbody.appendChild(row);
-
-        form.reset();
-        alertBox.textContent = "Terima kasih, data kamu telah ditambahkan ke tabel.";
-        alertBox.classList.remove("error");
-      });
-
-      resetBtn.addEventListener("click", function () {
-        while (tbody.rows.length > 1) {
-          tbody.deleteRow(1);
-        }
-        alertBox.textContent = "";
-      });
-    });
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
