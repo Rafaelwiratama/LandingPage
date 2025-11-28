@@ -1,23 +1,3 @@
-function initMap() {
-  const lokasiMuseum = { lat: -7.2275672, lng: 112.7425028 };
-  const mapElement = document.getElementById("googleMap");
-  if (!mapElement || !window.google || !google.maps) return;
-  const map = new google.maps.Map(mapElement, {
-    zoom: 17,
-    center: lokasiMuseum,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: true
-  });
-  new google.maps.Marker({
-    position: lokasiMuseum,
-    map: map,
-    title: "Museum Bank Indonesia Surabaya",
-    animation: google.maps.Animation.DROP
-  });
-}
-window.initMap = initMap;
-
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
