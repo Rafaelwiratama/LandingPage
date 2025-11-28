@@ -1,24 +1,22 @@
 function initMap() {
   const lokasiMuseum = { lat: -7.2275672, lng: 112.7425028 };
-
   const mapElement = document.getElementById("googleMap");
-  if (!mapElement) return;
-
+  if (!mapElement || !window.google || !google.maps) return;
   const map = new google.maps.Map(mapElement, {
     zoom: 17,
     center: lokasiMuseum,
     mapTypeControl: false,
     streetViewControl: false,
-    fullscreenControl: true,
+    fullscreenControl: true
   });
-
   new google.maps.Marker({
     position: lokasiMuseum,
     map: map,
     title: "Museum Bank Indonesia Surabaya",
-    animation: google.maps.Animation.DROP,
+    animation: google.maps.Animation.DROP
   });
 }
+window.initMap = initMap;
 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
@@ -48,35 +46,28 @@ document.addEventListener("DOMContentLoaded", function () {
   if (form && tbody && alertBox) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
       const nama = document.getElementById("nama").value.trim();
       const email = document.getElementById("email").value.trim();
       const pesan = document.getElementById("pesan").value.trim();
-
       if (!nama || !email || !pesan) {
         alertBox.textContent = "Mohon lengkapi semua field.";
         alertBox.classList.add("error");
         return;
       }
-
       const row = document.createElement("tr");
       const noCell = document.createElement("td");
       const namaCell = document.createElement("td");
       const emailCell = document.createElement("td");
       const pesanCell = document.createElement("td");
-
       noCell.textContent = getRowCount() + 1;
       namaCell.textContent = nama;
       emailCell.textContent = email;
       pesanCell.textContent = pesan;
-
       row.appendChild(noCell);
       row.appendChild(namaCell);
       row.appendChild(emailCell);
       row.appendChild(pesanCell);
-
       tbody.appendChild(row);
-
       form.reset();
       alertBox.textContent = "Terima kasih, data kamu telah ditambahkan ke tabel.";
       alertBox.classList.remove("error");
