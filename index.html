@@ -21,6 +21,7 @@
         <a href="#benefit">Mengapa?</a>
         <a href="#detail">Tentang</a>
         <a href="#gallery">Galeri</a>
+        <a href="#map">Lokasi</a>
         <a href="#testimoni">Testimoni</a>
         <a href="#form">Kunjungan</a>
         <a href="#faq">FAQ</a>
@@ -28,7 +29,6 @@
     </div>
   </header>
 
-  
   <section id="hero" class="hero">
     <div class="container hero-grid">
       <div class="hero-text">
@@ -157,6 +157,16 @@
           <img src="images/Galeri Museum 4.jpg" alt="Galeri Museum 4" />
         </figure>
       </div>
+    </div>
+  </section>
+
+  <section id="map" class="section section-alt">
+    <div class="container">
+      <div class="section-head center">
+        <h2>Lokasi Museum</h2>
+        <p>Lihat lokasi Museum Bank Indonesia Surabaya pada peta interaktif di bawah ini.</p>
+      </div>
+      <div id="googleMap" class="map-container"></div>
     </div>
   </section>
 
@@ -323,5 +333,6 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
