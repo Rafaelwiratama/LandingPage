@@ -19,17 +19,34 @@ $(function () {
   const $alert = $('#form-alert');
   const $tbody = $('#visitor-table-body');
 
-  function renderTable(data) {
+  const STORAGE_KEY = 'pengunjung_mbi_surabaya';
+
+  function getLocalData() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    try {
+      return JSON.parse(raw) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setLocalData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function renderTable(initialData, extraData) {
+    const combined = [...initialData, ...extraData];
     $tbody.empty();
 
-    if (!data || data.length === 0) {
+    if (combined.length === 0) {
       $tbody.append(
         `<tr><td colspan="4" class="text-center text-muted">Belum ada data pengunjung.</td></tr>`
       );
       return;
     }
 
-    data.forEach((item, index) => {
+    combined.forEach((item, index) => {
       const row = `
         <tr>
           <td>${index + 1}</td>
@@ -41,33 +58,31 @@ $(function () {
     });
   }
 
-  const dummyData = [
-    { nama: 'Contoh Pengunjung', email: 'contoh@mail.com', pesan: 'Pengalaman sangat menyenangkan!' },
-    { nama: 'Dosen PWEB', email: 'dosen@kampus.ac.id', pesan: 'Landing page ini sudah pakai JS, jQuery, AJAX, PHP & MySQL.' },
-  ];
+  let initialDataCache = [];
 
-  function loadData() {
-    $.ajax({
-      url: 'ambil_pengunjung.php',
-      method: 'GET',
-      dataType: 'json',
-      success: function (res) {
-        if (res && Array.isArray(res)) {
-          renderTable(res);
+  function loadInitialData() {
+    return $.getJSON('assets/data/pengunjung.json')
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          initialDataCache = data;
         } else {
-          renderTable(dummyData);
+          initialDataCache = [];
         }
-      },
-      error: function () {
-        renderTable(dummyData);
-      },
-    });
+      })
+      .catch(function () {
+        initialDataCache = [];
+      });
   }
 
-  loadData();
+  function initTable() {
+    const extra = getLocalData();
+    renderTable(initialDataCache, extra);
+  }
+
+  loadInitialData().then(initTable);
 
   $('#reload-btn').on('click', function () {
-    loadData();
+    loadInitialData().then(initTable);
   });
 
   $form.on('submit', function (e) {
@@ -85,32 +100,16 @@ $(function () {
       return;
     }
 
-    $.ajax({
-      url: 'simpan_pengunjung.php',
-      method: 'POST',
-      data: { nama, email, pesan },
-      dataType: 'json',
-      success: function (res) {
-        if (res && res.status === 'ok') {
-          $alert
-            .removeClass()
-            .addClass('alert alert-success')
-            .text('Data berhasil disimpan!');
-          $form[0].reset();
-          loadData();
-        } else {
-          $alert
-            .removeClass()
-            .addClass('alert alert-danger')
-            .text(res.message || 'Terjadi kesalahan saat menyimpan data.');
-        }
-      },
-      error: function () {
-        $alert
-          .removeClass()
-          .addClass('alert alert-danger')
-          .text('Gagal terhubung ke server. Pastikan PHP & MySQL aktif.');
-      },
-    });
+    const extra = getLocalData();
+    extra.push({ nama, email, pesan });
+    setLocalData(extra);
+
+    renderTable(initialDataCache, extra);
+
+    $alert
+      .removeClass()
+      .addClass('alert alert-success')
+      .text('Terima kasih! Data kamu tersimpan di browser ini.');
+    $form[0].reset();
   });
 });
