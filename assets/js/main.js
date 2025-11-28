@@ -1,3 +1,25 @@
+function initMap() {
+  const lokasiMuseum = { lat: -7.2275672, lng: 112.7425028 };
+
+  const mapElement = document.getElementById("googleMap");
+  if (!mapElement) return;
+
+  const map = new google.maps.Map(mapElement, {
+    zoom: 17,
+    center: lokasiMuseum,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
+  });
+
+  new google.maps.Marker({
+    position: lokasiMuseum,
+    map: map,
+    title: "Museum Bank Indonesia Surabaya",
+    animation: google.maps.Animation.DROP,
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
@@ -20,10 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const resetBtn = document.getElementById("reset-btn");
 
   function getRowCount() {
-    return tbody.querySelectorAll("tr").length;
+    return tbody ? tbody.querySelectorAll("tr").length : 0;
   }
 
-  if (form) {
+  if (form && tbody && alertBox) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -61,15 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (resetBtn) {
+  if (resetBtn && tbody && alertBox) {
     resetBtn.addEventListener("click", function () {
       while (tbody.rows.length > 1) {
         tbody.deleteRow(1);
       }
-      if (alertBox) {
-        alertBox.textContent = "";
-        alertBox.classList.remove("error");
-      }
+      alertBox.textContent = "";
+      alertBox.classList.remove("error");
     });
   }
 });
